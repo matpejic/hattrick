@@ -1,0 +1,81 @@
+﻿@model Hattrick.Models.ViewsModels.ViewFootballWallet
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    @using (Html.BeginForm("About", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Football Game")
+            </th>
+            <th>
+                @Html.DisplayName("Time")
+            </th>
+            <th>
+                @Html.DisplayName("Type(1/X/2)")
+            </th>
+
+
+            <th></th>
+        </tr>
+
+
+        @for (int i = 0; i < Model.ViewFootballList.Count; i++)
+        {
+            {
+
+                <tr>
+                    <td>
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].IdFootball)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].Coefficient1)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].CoefficientX)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].Coefficient2)
+
+
+
+                        @Html.DisplayFor(modelItem => modelItem.ViewFootballList[i].FootballGame)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].FootballGame)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.ViewFootballList[i].Time)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].Time)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(modelItem => modelItem.ViewFootballList[i].Winner)
+                        @Html.HiddenFor(modelItem => modelItem.ViewFootballList[i].Winner)
+                    </td>
+                </tr>
+
+            }
+        }
+
+
+        Available Balance:@Html.DisplayFor(modelItem => modelItem.ViewWallet.AvailableBalance)
+        Payment:@Html.TextBoxFor(modelItem => modelItem.ViewWallet.AvailableBalance)
+        @Html.HiddenFor(modelItem => modelItem.ViewWallet.IdWallet)
+        @Html.HiddenFor(modelItem => modelItem.ViewWallet.Name)
+
+    </table>
+        <p>
+            <input class="button" id="submit" type="submit" value="Finish" />
+        </p>
+        <p>
+             @Html.ActionLink("View Ticket", "Index", new { controller = "Ticket" })
+
+
+     
+        </p>
+   }
+    </body>
+</html>
+
